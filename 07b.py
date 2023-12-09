@@ -1,3 +1,4 @@
+from operator import itemgetter
 from collections import Counter
 
 with open('input', 'r') as f:
@@ -74,7 +75,7 @@ class Hand:
     def __init__(self, hand, value):
         self.hand = hand
         filtered_hand = filter(lambda x: x != 'J', hand)
-        self.hand_type = list(map(lambda x: x[1], Counter(filtered_hand).most_common(2)))
+        self.hand_type = list(map(itemgetter(1), Counter(filtered_hand).most_common(2)))
         self.js = self.hand.count('J')
         self.value = value
 
