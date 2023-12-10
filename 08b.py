@@ -1,6 +1,5 @@
 import math
 from itertools import compress
-from operator import itemgetter
 from math import lcm
 import re
 
@@ -61,5 +60,5 @@ cycles = [find_cycle(start, instructions) for start in starts]
 i = max(cycles)[1]
 print(cycles)
 while not all(expr:=[((i-offset) % cycle)+offset == true for cycle, true, offset in cycles]):
-    i += lcm(*map(itemgetter(0), compress(cycles, expr)))
+    i += lcm(*[x[0] for x in compress(cycles, expr)])
 print(i)
